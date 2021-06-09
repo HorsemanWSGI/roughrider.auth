@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
+from typing import TypeVar, Optional
 from horseman.prototyping import Environ, WSGICallable
 
 
-class User(ABC):
-    username: str
+User = TypeVar('User')
 
 
 class Authenticator(ABC):
@@ -12,7 +12,7 @@ class Authenticator(ABC):
     forbidden: WSGICallable
 
     @abstractmethod
-    def identify(self, environ: Environ) -> User:
+    def identify(self, environ: Environ) -> Optional[User]:
         """Returns the current active user.
         """
 
